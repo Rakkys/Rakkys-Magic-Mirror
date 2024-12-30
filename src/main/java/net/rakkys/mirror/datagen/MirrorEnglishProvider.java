@@ -12,7 +12,9 @@ public class MirrorEnglishProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
         translationBuilder.add(ItemRegistry.MAGIC_MIRROR, "Magic Mirror");
+        translationBuilder.add(ItemRegistry.ICE_MIRROR, "Ice Mirror");
 
         translationBuilder.add("rakkys-mirror.mirror.error.null_spawn_args", "Could not locate your spawn-point, :3");
+        translationBuilder.add("rakkys-mirror.mirror.gaze_tooltip", "Gaze in the mirror to return home");
     }
 }
