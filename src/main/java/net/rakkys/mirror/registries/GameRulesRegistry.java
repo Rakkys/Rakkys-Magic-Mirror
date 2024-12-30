@@ -15,6 +15,11 @@ public class GameRulesRegistry {
                     GameRules.Category.PLAYER,
                     GameRuleFactory.createIntRule(20, 20));
 
+    public static final GameRules.Key<GameRules.IntRule> MIRROR_EXPERIENCE_LEVEL_USAGE =
+            GameRuleRegistry.register("mirrorExperienceLevelUsage",
+                    GameRules.Category.PLAYER,
+                    GameRuleFactory.createIntRule(0, 0));
+
     public static void registerGameRules() {
 
     }

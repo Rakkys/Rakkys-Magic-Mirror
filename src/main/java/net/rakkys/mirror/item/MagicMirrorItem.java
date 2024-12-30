@@ -98,6 +98,9 @@ public class MagicMirrorItem extends Item {
         if (SpawnPos != null && SpawnWorld != null) {
             Optional<Vec3d> userSpawn = PlayerEntity.findRespawnPosition(SpawnWorld, SpawnPos, 0f, false, player.isAlive());
             if (userSpawn.isPresent()) {
+                int experienceUsage = player.getWorld().getGameRules().getInt(GameRulesRegistry.MIRROR_EXPERIENCE_LEVEL_USAGE);
+                player.addExperienceLevels(-experienceUsage);
+
                 Set<PositionFlag> flags = Set.of(PositionFlag.X, PositionFlag.Y, PositionFlag.Z);
                 player.teleport(SpawnWorld,
                         SpawnPos.getX(), SpawnPos.getY(), SpawnPos.getZ(),

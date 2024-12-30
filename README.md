@@ -9,6 +9,7 @@ A small mod that adds the magic mirror from Terraria
 - - Determines whether or not you have to charge the magic mirror a second before using it. Defaulted at `false`
 - magicMirrorCooldown 
 - - Determines how long the cooldown between each mirror use is, in ticks. Defaulted and minimum of 20
-
+- mirrorExperienceLevelUsage
+- - Determines how many experience levels teleporting costs. Defaulted and minimum of 0
 ## Issues
 Please report any bugs on the mod's [issue tracker](https://github.com/Rakkys/rakkysmagicmirror/issues)
