@@ -6,7 +6,14 @@ import net.minecraft.world.GameRules;
 
 public class GameRulesRegistry {
     public static final GameRules.Key<GameRules.BooleanRule> INSTANT_MAGIC_MIRROR =
-            GameRuleRegistry.register("instantMagicMirror", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false));
+            GameRuleRegistry.register("instantMagicMirror",
+                    GameRules.Category.PLAYER,
+                    GameRuleFactory.createBooleanRule(false));
+
+    public static final GameRules.Key<GameRules.IntRule> MAGIC_MIRROR_COOLDOWN =
+            GameRuleRegistry.register("magicMirrorCooldown",
+                    GameRules.Category.PLAYER,
+                    GameRuleFactory.createIntRule(20, 20));
 
     public static void registerGameRules() {
 

@@ -44,14 +44,14 @@ public class MagicMirrorItem extends Item {
 
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (!(user instanceof ServerPlayerEntity player)) {
-            return;
-        }
+        if (user instanceof ServerPlayerEntity player) {
+            int cooldownDuration = world.getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
+            int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
-        int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
-
-        if (useDuration >= 20) {
-            teleportUser(player);
+            player.getItemCooldownManager().set(this, cooldownDuration);
+            if (useDuration >= 20) {
+                teleportUser(player);
+            }
         }
     }
 
@@ -66,7 +66,7 @@ public class MagicMirrorItem extends Item {
 
         ServerPlayerEntity player = (ServerPlayerEntity) user;
 
-        if (user.getWorld().getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR)) {
+        if (world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR)) {
             teleportUser(player);
 
             return TypedActionResult.success(itemStack);
