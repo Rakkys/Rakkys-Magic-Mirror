@@ -40,16 +40,23 @@ public class MagicMirrorItem extends Item {
             world.playSound((PlayerEntity)null, user.getX(), user.getY(), user.getZ(),
                     SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS,
                     1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + useDuration * 0.5F);
+
+            if (user instanceof ServerPlayerEntity player) {
+                teleportUser(player);
+
+                int cooldownDuration = world.getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
+                player.getItemCooldownManager().set(this, cooldownDuration);
+            }
+
+            user.stopUsingItem();
         }
     }
 
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (user instanceof ServerPlayerEntity player) {
-            int cooldownDuration = world.getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
             int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
-            player.getItemCooldownManager().set(this, cooldownDuration);
             if (useDuration >= 20) {
                 teleportUser(player);
             }
