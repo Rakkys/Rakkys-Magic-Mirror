@@ -1,7 +1,6 @@
 package net.rakkys.mirror.item;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.item.TooltipData;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,7 +22,6 @@ import net.rakkys.mirror.registries.GameRulesRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public class MagicMirrorItem extends Item {

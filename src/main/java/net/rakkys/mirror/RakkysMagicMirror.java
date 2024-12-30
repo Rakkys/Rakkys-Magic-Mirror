@@ -1,7 +1,6 @@
 package net.rakkys.mirror;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.rakkys.mirror.registries.GameRulesRegistry;
 import net.rakkys.mirror.registries.ItemRegistry;
 import org.slf4j.Logger;
