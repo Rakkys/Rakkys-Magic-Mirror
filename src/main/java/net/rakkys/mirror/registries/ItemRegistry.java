@@ -12,6 +12,9 @@ public class ItemRegistry {
     public static Item MAGIC_MIRROR = registerItem("magic_mirror",
             new MagicMirrorItem(new FabricItemSettings()));
 
+    public static Item ICE_MIRROR = registerItem("ice_mirror",
+            new MagicMirrorItem(new FabricItemSettings()));
+
     public static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(RakkysMagicMirror.MOD_ID, name), item);
     }
