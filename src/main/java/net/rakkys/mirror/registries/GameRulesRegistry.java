@@ -20,6 +20,11 @@ public class GameRulesRegistry {
                     GameRules.Category.PLAYER,
                     GameRuleFactory.createIntRule(0, 0));
 
+    public static final GameRules.Key<GameRules.BooleanRule> MIRROR_HOME_DIMENSION_ONLY =
+            GameRuleRegistry.register("mirrorHomeDimensionOnly",
+                    GameRules.Category.PLAYER,
+                    GameRuleFactory.createBooleanRule(false));
+
     public static void registerGameRules() {
 
     }
