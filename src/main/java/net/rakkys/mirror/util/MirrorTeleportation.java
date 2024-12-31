@@ -20,17 +20,17 @@ public class MirrorTeleportation {
     }
 
     public static void teleportPlayerToSpawn(ServerPlayerEntity player, boolean decreaseExperience) {
-        BlockPos SpawnPos = player.getSpawnPointPosition();
-        RegistryKey<World> SpawnWorldKey = player.getSpawnPointDimension();
-        ServerWorld SpawnWorld = player.getServer().getWorld(SpawnWorldKey);
+        BlockPos spawnPos = player.getSpawnPointPosition();
+        RegistryKey<World> spawnWorldKey = player.getSpawnPointDimension();
+        ServerWorld spawnWorld = player.getServer().getWorld(spawnWorldKey);
 
 
-        if (SpawnPos != null && SpawnWorld != null) {
+        if (spawnPos == null || spawnWorld == null) {
             player.sendMessage(Text.translatable("rakkys-mirror.mirror.error.null_spawn_args"), true);
             return;
         }
 
-        Optional<Vec3d> userSpawn = PlayerEntity.findRespawnPosition(SpawnWorld, SpawnPos, 0f, false, player.isAlive());
+        Optional<Vec3d> userSpawn = PlayerEntity.findRespawnPosition(spawnWorld, spawnPos, 0f, false, player.isAlive());
         if (userSpawn.isEmpty()) {
             player.sendMessage(Text.translatable("rakkys-mirror.mirror.error.null_spawn_args"), true);
             return;
@@ -42,8 +42,8 @@ public class MirrorTeleportation {
         }
 
         Set<PositionFlag> flags = Set.of(PositionFlag.X, PositionFlag.Y, PositionFlag.Z);
-        player.teleport(SpawnWorld,
-                SpawnPos.getX(), SpawnPos.getY(), SpawnPos.getZ(),
+        player.teleport(spawnWorld,
+                spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(),
                 flags, player.getYaw(), player.getPitch());
     }
 }
