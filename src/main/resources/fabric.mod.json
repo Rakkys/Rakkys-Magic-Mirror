@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "rakkys-mirror",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"name": "Rakkys' Magic Mirror",
 	"description": "Add a magic mirror item for teleporting to your spawn-point.",
 	"authors": [
