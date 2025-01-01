@@ -45,7 +45,12 @@ public class MirrorTeleportation {
 
         if (decreaseExperience) {
             int experienceUsage = player.getWorld().getGameRules().getInt(GameRulesRegistry.MIRROR_EXPERIENCE_LEVEL_USAGE);
-            player.addExperienceLevels(-experienceUsage);
+            if (player.experienceLevel >= experienceUsage) {
+                player.addExperienceLevels(-(experienceUsage / 2));
+            } else {
+                player.sendMessage(Text.translatable("rakkys-mirror.error.not_enough_experience"), true);
+                return;
+            }
         }
 
         Set<PositionFlag> flags = Set.of(PositionFlag.X, PositionFlag.Y, PositionFlag.Z);
