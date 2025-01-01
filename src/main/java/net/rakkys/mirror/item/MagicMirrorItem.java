@@ -15,6 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.rakkys.mirror.registries.GameRulesRegistry;
+import net.rakkys.mirror.registries.ItemRegistry;
 import net.rakkys.mirror.util.MirrorTeleportation;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,7 +39,8 @@ public class MagicMirrorItem extends Item {
                 MirrorTeleportation.teleportPlayerToSpawn(player, true);
 
                 int cooldownDuration = world.getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
-                player.getItemCooldownManager().set(this, cooldownDuration);
+                player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
+                player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
             }
 
             user.stopUsingItem();
