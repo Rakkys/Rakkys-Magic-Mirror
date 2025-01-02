@@ -10,6 +10,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -32,11 +33,11 @@ public class MagicMirrorItem extends Item {
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
-        if (useDuration == CHARGE_TIME) {
+        if (useDuration >= CHARGE_TIME) {
             playParticles(world, user, useDuration);
 
             if (user instanceof ServerPlayerEntity player) {
-                MirrorTeleportation.teleportPlayerToSpawn(player, true);
+                teleportUser(player);
 
                 int cooldownDuration = world.getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
                 player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
@@ -44,17 +45,6 @@ public class MagicMirrorItem extends Item {
             }
 
             user.stopUsingItem();
-        }
-    }
-
-    @Override
-    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (user instanceof ServerPlayerEntity player) {
-            int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
-
-            if (useDuration >= CHARGE_TIME) {
-                MirrorTeleportation.teleportPlayerToSpawn(player, true);
-            }
         }
     }
 
@@ -71,7 +61,7 @@ public class MagicMirrorItem extends Item {
 
         if (world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR)) {
             playParticles(world, user, 1);
-            MirrorTeleportation.teleportPlayerToSpawn(player, true);
+            teleportUser(player);
 
             return TypedActionResult.success(itemStack);
         } else {
@@ -96,5 +86,10 @@ public class MagicMirrorItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("rakkys-mirror.mirror.gaze_tooltip"));
+    }
+
+    public void teleportUser(ServerPlayerEntity player) {
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
+        MirrorTeleportation.teleportPlayerToSpawn(player, true);
     }
 }
