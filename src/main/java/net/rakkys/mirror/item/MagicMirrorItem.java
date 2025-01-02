@@ -34,17 +34,10 @@ public class MagicMirrorItem extends Item {
         int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
         if (useDuration >= CHARGE_TIME) {
-            playParticles(world, user, useDuration);
-
+            playEffects(world, user, CHARGE_TIME);
             if (user instanceof ServerPlayerEntity player) {
                 teleportUser(player);
-
-                int cooldownDuration = world.getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
-                player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
-                player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
             }
-
-            user.stopUsingItem();
         }
     }
 
@@ -53,14 +46,19 @@ public class MagicMirrorItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand);
         user.setCurrentHand(hand);
 
+        boolean instantMirror = world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR);
+
         if (user instanceof ClientPlayerEntity) {
-            return TypedActionResult.consume(itemStack);
+            if (instantMirror) {
+                playEffects(world, user, CHARGE_TIME);
+            }
+            return TypedActionResult.pass(itemStack);
         }
 
         ServerPlayerEntity player = (ServerPlayerEntity) user;
 
-        if (world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR)) {
-            playParticles(world, user, 1);
+        if (instantMirror) {
+            playEffects(world, user, CHARGE_TIME);
             teleportUser(player);
 
             return TypedActionResult.success(itemStack);
@@ -74,13 +72,15 @@ public class MagicMirrorItem extends Item {
         return 36000;
     }
 
-    public void playParticles(World world, LivingEntity user, int useDuration) {
-        world.addParticle(ParticleTypes.FLASH, user.getX(), user.getY(), user.getZ(),
-                0, 0, 0);
-
-        world.playSound(null, user.getX(), user.getY(), user.getZ(),
-                SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS,
-                1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + useDuration * 0.5F);
+    public void playEffects(World world, LivingEntity user, int useDuration) {
+        if (world.isClient()) {
+            world.addParticle(ParticleTypes.FLASH, user.getX(), user.getY(), user.getZ(),
+                    0, 0, 0);
+        } else {
+            world.playSound(null, user.getX(), user.getY(), user.getZ(),
+                    SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS,
+                    1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + useDuration * 0.5F);
+        }
     }
 
     @Override
@@ -89,7 +89,13 @@ public class MagicMirrorItem extends Item {
     }
 
     public void teleportUser(ServerPlayerEntity player) {
+        int cooldownDuration = player.getWorld().getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
+        player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
+        player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
+
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         MirrorTeleportation.teleportPlayerToSpawn(player, true);
+
+        player.stopUsingItem();
     }
 }
