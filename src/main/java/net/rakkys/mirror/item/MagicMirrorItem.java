@@ -31,11 +31,11 @@ public class MagicMirrorItem extends Item {
 
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
+        if (user instanceof ServerPlayerEntity player) {
+            int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
-        if (useDuration >= CHARGE_TIME) {
-            playEffects(world, user, CHARGE_TIME);
-            if (user instanceof ServerPlayerEntity player) {
+            if (useDuration >= CHARGE_TIME) {
+                playEffects(world, user, CHARGE_TIME);
                 teleportUser(player);
             }
         }
@@ -48,16 +48,7 @@ public class MagicMirrorItem extends Item {
 
         boolean instantMirror = world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR);
 
-        if (user instanceof ClientPlayerEntity) {
-            if (instantMirror) {
-                playEffects(world, user, CHARGE_TIME);
-            }
-            return TypedActionResult.pass(itemStack);
-        }
-
-        ServerPlayerEntity player = (ServerPlayerEntity) user;
-
-        if (instantMirror) {
+        if (instantMirror && user instanceof ServerPlayerEntity player) {
             playEffects(world, user, CHARGE_TIME);
             teleportUser(player);
 
