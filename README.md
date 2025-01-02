@@ -9,7 +9,7 @@ A small, configurable, mod that adds the magic mirror from Terraria
 #### rakkys-instantMagicMirror 
 - Determines if you have to charge the magic mirror a second before using it
 - Default: `false`
-#### rakkys-magicMirrorCooldown 
+#### rakkys-magicMirrorCooldownTicks 
 - Determines how long the cooldown between each mirror use is, in ticks
 - Default: `20`
 - Minimum: `20`
