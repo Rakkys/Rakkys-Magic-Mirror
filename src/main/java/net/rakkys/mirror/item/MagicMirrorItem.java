@@ -33,11 +33,11 @@ public class MagicMirrorItem extends Item {
 
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        if (user instanceof ServerPlayerEntity player) {
-            int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
+        int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
-            if (useDuration >= CHARGE_TIME) {
-                playEffects(world, user);
+        if (useDuration == CHARGE_TIME) {
+            playEffects(world, user);
+            if (user instanceof ServerPlayerEntity player) {
                 teleportUser(player);
             }
         }
