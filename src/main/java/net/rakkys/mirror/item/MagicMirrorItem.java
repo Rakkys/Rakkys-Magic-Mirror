@@ -37,7 +37,7 @@ public class MagicMirrorItem extends Item {
             int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
             if (useDuration >= CHARGE_TIME) {
-                playEffects(world, user, CHARGE_TIME);
+                playEffects(world, user);
                 teleportUser(player);
             }
         }
@@ -51,7 +51,7 @@ public class MagicMirrorItem extends Item {
         boolean instantMirror = world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR);
 
         if (instantMirror && user instanceof ServerPlayerEntity player) {
-            playEffects(world, user, CHARGE_TIME);
+            playEffects(world, user);
             teleportUser(player);
 
             return TypedActionResult.success(itemStack);
@@ -62,17 +62,17 @@ public class MagicMirrorItem extends Item {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return 36000;
+        return CHARGE_TIME * 1800;
     }
 
-    public void playEffects(World world, LivingEntity user, int useDuration) {
+    public void playEffects(World world, LivingEntity user) {
         if (world.isClient()) {
             world.addParticle(ParticleTypes.FLASH, user.getX(), user.getY(), user.getZ(),
                     0, 0, 0);
         } else {
             world.playSound(null, user.getX(), user.getY(), user.getZ(),
                     SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS,
-                    1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + useDuration * 0.5F);
+                    1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + CHARGE_TIME * 0.5F);
         }
     }
 
