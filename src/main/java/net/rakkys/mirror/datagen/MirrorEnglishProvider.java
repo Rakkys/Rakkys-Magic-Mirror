@@ -20,5 +20,7 @@ public class MirrorEnglishProvider extends FabricLanguageProvider {
 
         translationBuilder.add("rakkys-mirror.mirror.shift_message", "Hold shift to return home");
         translationBuilder.add("rakkys-mirror.mirror.gaze_tooltip", "Gaze in the mirror to return home");
+
+        translationBuilder.add("rakkys-mirror.item_group.magic_mirrors", "Rakkys' Magic Mirrors");
     }
 }

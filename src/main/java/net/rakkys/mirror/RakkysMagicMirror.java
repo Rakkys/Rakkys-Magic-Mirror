@@ -2,6 +2,7 @@ package net.rakkys.mirror;
 
 import net.fabricmc.api.ModInitializer;
 import net.rakkys.mirror.registries.GameRulesRegistry;
+import net.rakkys.mirror.registries.ItemGroupRegistry;
 import net.rakkys.mirror.registries.ItemRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ public class RakkysMagicMirror implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 
 		ItemRegistry.registerItems();
+		ItemGroupRegistry.registerItemGroups();
 		GameRulesRegistry.registerGameRules();
 	}
 }
