@@ -1,15 +1,14 @@
 package net.rakkys.mirror.item;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -36,7 +35,6 @@ public class MagicMirrorItem extends Item {
         int useDuration = this.getMaxUseTime(stack) - remainingUseTicks;
 
         if (useDuration == CHARGE_TIME) {
-            playEffects(world, user);
             if (user instanceof ServerPlayerEntity player) {
                 teleportUser(player);
             }
@@ -54,7 +52,6 @@ public class MagicMirrorItem extends Item {
         }
 
         if (instantMirror && user instanceof ServerPlayerEntity player) {
-            playEffects(world, user);
             teleportUser(player);
 
             return TypedActionResult.success(itemStack);
@@ -68,15 +65,14 @@ public class MagicMirrorItem extends Item {
         return CHARGE_TIME * 1800;
     }
 
-    public void playEffects(World world, LivingEntity user) {
-        if (world.isClient()) {
-            world.addParticle(ParticleTypes.FLASH, user.getX(), user.getY(), user.getZ(),
-                    0, 0, 0);
-        } else {
-            world.playSound(null, user.getX(), user.getY(), user.getZ(),
-                    SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS,
-                    1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + CHARGE_TIME * 0.5F);
-        }
+    public void playEffects(ServerWorld world, ServerPlayerEntity user) {
+        world.spawnParticles(ParticleTypes.FLASH,
+                user.getX(), user.getY(), user.getZ(),
+                1, 0, 0, 0, 1);
+
+        world.playSound(null, user.getX(), user.getY(), user.getZ(),
+                SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS,
+                1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + CHARGE_TIME * 0.5F);
     }
 
     @Override
@@ -89,9 +85,12 @@ public class MagicMirrorItem extends Item {
     }
 
     public void teleportUser(ServerPlayerEntity player) {
+
         int cooldownDuration = player.getWorld().getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
         player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
         player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
+
+        playEffects(player.getServerWorld(), player);
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         MirrorTeleportation.teleportPlayerToSpawn(player, true);
