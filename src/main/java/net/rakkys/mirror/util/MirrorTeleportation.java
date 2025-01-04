@@ -46,7 +46,7 @@ public class MirrorTeleportation {
         if (decreaseExperience && !player.isCreative()) {
             int experienceUsage = player.getWorld().getGameRules().getInt(GameRulesRegistry.MIRROR_EXPERIENCE_LEVEL_USAGE);
             if (player.experienceLevel >= experienceUsage) {
-                player.addExperienceLevels(-(experienceUsage / 2));
+                player.setExperienceLevel(player.experienceLevel - experienceUsage);
             } else {
                 player.sendMessage(Text.translatable("text.rakkys-mirror.error.not_enough_experience"), true);
                 return;
