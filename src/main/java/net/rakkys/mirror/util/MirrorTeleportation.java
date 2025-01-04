@@ -43,7 +43,7 @@ public class MirrorTeleportation {
             }
         }
 
-        if (decreaseExperience) {
+        if (decreaseExperience && !player.isCreative()) {
             int experienceUsage = player.getWorld().getGameRules().getInt(GameRulesRegistry.MIRROR_EXPERIENCE_LEVEL_USAGE);
             if (player.experienceLevel >= experienceUsage) {
                 player.addExperienceLevels(-(experienceUsage / 2));

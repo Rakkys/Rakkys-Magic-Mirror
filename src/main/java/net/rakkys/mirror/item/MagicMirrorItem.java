@@ -49,7 +49,7 @@ public class MagicMirrorItem extends Item {
         user.setCurrentHand(hand);
 
         boolean instantMirror = world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR);
-        if (user.getAbilities().creativeMode) {
+        if (user.isCreative()) {
             instantMirror = true;
         }
 
