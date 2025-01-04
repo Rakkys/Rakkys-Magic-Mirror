@@ -13,7 +13,7 @@ public class GameRulesRegistry {
     public static final GameRules.Key<GameRules.IntRule> MAGIC_MIRROR_COOLDOWN =
             GameRuleRegistry.register("rakkys-magicMirrorCooldownTicks",
                     GameRules.Category.PLAYER,
-                    GameRuleFactory.createIntRule(20, 20));
+                    GameRuleFactory.createIntRule(20, 0));
 
     public static final GameRules.Key<GameRules.IntRule> MIRROR_EXPERIENCE_LEVEL_USAGE =
             GameRuleRegistry.register("rakkys-mirrorExperienceLevelUsage",
