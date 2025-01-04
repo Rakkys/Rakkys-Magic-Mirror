@@ -1,5 +1,7 @@
 package net.rakkys.mirror.item;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
@@ -76,7 +78,11 @@ public class MagicMirrorItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("rakkys-mirror.mirror.gaze_tooltip"));
+        if (MinecraftClient.getInstance().options.advancedItemTooltips) {
+            tooltip.add(Text.translatable("rakkys-mirror.mirror.gaze_tooltip"));
+        } else {
+            tooltip.add(Text.translatable("rakkys-mirror.mirror.regular_tooltip"));
+        }
     }
 
     public void teleportUser(ServerPlayerEntity player) {
