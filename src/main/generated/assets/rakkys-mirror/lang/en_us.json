@@ -1,9 +1,0 @@
-{
-  "item.rakkys-mirror.ice_mirror": "Ice Mirror",
-  "item.rakkys-mirror.magic_mirror": "Magic Mirror",
-  "rakkys-mirror.error.not_enough_experience": "You do not have enough experience to teleport",
-  "rakkys-mirror.error.not_home_dimension": "You cannot teleport to other dimensions",
-  "rakkys-mirror.error.null_spawn_args": "Could not locate your spawn-point, :3",
-  "rakkys-mirror.mirror.gaze_tooltip": "Gaze in the mirror to return home",
-  "rakkys-mirror.mirror.shift_message": "Hold shift to return home"
-}

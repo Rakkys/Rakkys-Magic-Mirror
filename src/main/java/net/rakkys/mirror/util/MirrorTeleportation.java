@@ -26,19 +26,19 @@ public class MirrorTeleportation {
 
 
         if (spawnPos == null || spawnWorld == null) {
-            player.sendMessage(Text.translatable("rakkys-mirror.error.null_spawn_args"), true);
+            player.sendMessage(Text.translatable("text.rakkys-mirror.error.error.null_spawn_args"), true);
             return;
         }
 
         Optional<Vec3d> userSpawn = PlayerEntity.findRespawnPosition(spawnWorld, spawnPos, 0f, false, player.isAlive());
         if (userSpawn.isEmpty()) {
-            player.sendMessage(Text.translatable("rakkys-mirror.error.null_spawn_args"), true);
+            player.sendMessage(Text.translatable("text.rakkys-mirror.error.null_spawn_args"), true);
             return;
         }
 
         if (player.getWorld().getGameRules().getBoolean(GameRulesRegistry.MIRROR_HOME_DIMENSION_ONLY)) {
             if (player.getWorld() != spawnWorld) {
-                player.sendMessage(Text.translatable("rakkys-mirror.error.not_home_dimension"), true);
+                player.sendMessage(Text.translatable("text.rakkys-mirror.error.not_home_dimension"), true);
                 return;
             }
         }
@@ -48,7 +48,7 @@ public class MirrorTeleportation {
             if (player.experienceLevel >= experienceUsage) {
                 player.addExperienceLevels(-(experienceUsage / 2));
             } else {
-                player.sendMessage(Text.translatable("rakkys-mirror.error.not_enough_experience"), true);
+                player.sendMessage(Text.translatable("text.rakkys-mirror.error.not_enough_experience"), true);
                 return;
             }
         }

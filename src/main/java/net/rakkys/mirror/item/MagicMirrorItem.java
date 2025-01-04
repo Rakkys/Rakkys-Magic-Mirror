@@ -49,6 +49,9 @@ public class MagicMirrorItem extends Item {
         user.setCurrentHand(hand);
 
         boolean instantMirror = world.getGameRules().getBoolean(GameRulesRegistry.INSTANT_MAGIC_MIRROR);
+        if (user.getAbilities().creativeMode) {
+            instantMirror = true;
+        }
 
         if (instantMirror && user instanceof ServerPlayerEntity player) {
             playEffects(world, user);
@@ -79,9 +82,9 @@ public class MagicMirrorItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (MinecraftClient.getInstance().options.advancedItemTooltips) {
-            tooltip.add(Text.translatable("rakkys-mirror.mirror.gaze_tooltip"));
+            tooltip.add(Text.translatable("item.rakkys-mirror.mirrors.gaze_tooltip"));
         } else {
-            tooltip.add(Text.translatable("rakkys-mirror.mirror.regular_tooltip"));
+            tooltip.add(Text.translatable("item.rakkys-mirror.mirrors.regular_tooltip"));
         }
     }
 

@@ -2,7 +2,6 @@ package net.rakkys.mirror;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.rakkys.mirror.datagen.MirrorEnglishProvider;
 import net.rakkys.mirror.datagen.MirrorRecipeProvider;
 
 public class RakkysMagicMirrorDataGenerator implements DataGeneratorEntrypoint {
@@ -10,7 +9,6 @@ public class RakkysMagicMirrorDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-		pack.addProvider(MirrorEnglishProvider::new);
 		pack.addProvider(MirrorRecipeProvider::new);
 	}
 }

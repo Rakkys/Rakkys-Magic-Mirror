@@ -12,7 +12,7 @@ import net.rakkys.mirror.RakkysMagicMirror;
 public class ItemGroupRegistry {
     public static final ItemGroup MAGIC_MIRRORS = FabricItemGroup.builder()
             .icon(() -> new ItemStack(ItemRegistry.MAGIC_MIRROR))
-            .displayName(Text.translatable("rakkys-mirror.item_group.magic_mirrors"))
+            .displayName(Text.translatable("itemGroup.rakkys-mirror.magic_mirrors"))
             .entries(((displayContext, entries) -> {
                 entries.add(ItemRegistry.MAGIC_MIRROR);
                 entries.add(ItemRegistry.ICE_MIRROR);
