@@ -26,7 +26,7 @@ public class MirrorTeleportation {
 
 
         if (spawnPos == null || spawnWorld == null) {
-            player.sendMessage(Text.translatable("text.rakkys-mirror.error.error.null_spawn_args"), true);
+            player.sendMessage(Text.translatable("text.rakkys-mirror.error.null_spawn_args"), true);
             return;
         }
 
