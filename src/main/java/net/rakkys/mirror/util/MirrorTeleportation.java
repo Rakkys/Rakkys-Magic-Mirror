@@ -37,7 +37,7 @@ public class MirrorTeleportation {
         }
 
         if (player.getWorld().getGameRules().getBoolean(GameRulesRegistry.MIRROR_HOME_DIMENSION_ONLY)) {
-            if (player.getWorld() != spawnWorld) {
+            if (player.getWorld() != spawnWorld && !player.isCreative()) {
                 player.sendMessage(Text.translatable("text.rakkys-mirror.error.not_home_dimension"), true);
                 return;
             }
