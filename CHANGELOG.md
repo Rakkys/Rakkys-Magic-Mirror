@@ -1,7 +1,7 @@
-- Made it so that cooldowns apply if you had `rakkys-instantMagicMirror` turned to true
-- Corrected the sound effect that played when you teleported
-- Made it so that you don't consume,
-teleport twice, if you held down the mirror with `rakkys-instantMagicMirror` turned to true
+- added an creative tab that holds the magic mirrors
+- moved gaze tooltip to be an easter egg hidden behind F3 + H, just so people don't get confused on how to use the mirror
+- removed teleportation checks if you're in creative
+- particles and sound effects should now play when `rakkys-instantMagicMirror` is false, hopefully
 
 BUGS STILL REQUIRE FIXING
 - Make the flash particle appear if you have `rakkys-instantMagicMirror` turned to true
