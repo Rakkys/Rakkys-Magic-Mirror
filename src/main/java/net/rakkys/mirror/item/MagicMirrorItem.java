@@ -10,6 +10,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
@@ -19,10 +20,12 @@ import net.minecraft.world.World;
 import net.rakkys.mirror.registries.GameRulesRegistry;
 import net.rakkys.mirror.registries.ItemRegistry;
 import net.rakkys.mirror.registries.ParticleRegistry;
+import net.rakkys.mirror.registries.SoundRegistry;
 import net.rakkys.mirror.util.MirrorTeleportation;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+
 
 public class MagicMirrorItem extends Item {
     private final int CHARGE_TIME = 20;
@@ -66,7 +69,7 @@ public class MagicMirrorItem extends Item {
         return CHARGE_TIME * 1800;
     }
 
-    public void playEffects(ServerWorld world, ServerPlayerEntity user) {
+    public void playEffects(ServerWorld world, ServerPlayerEntity user, boolean success) {
         int particleAmount = (world.getRandom().nextInt(CHARGE_TIME * 3) + 5) * 2;
 
         for (int i = 0; i <= particleAmount; i++) {
@@ -77,8 +80,13 @@ public class MagicMirrorItem extends Item {
                     1, 0, 0, 0, 1);
         }
 
+        SoundEvent teleportSuccess = net.rakkys.mirror.registries.SoundRegistry.MIRROR_TELEPORT_SUCCESS;
+        SoundEvent teleportFailure = net.rakkys.mirror.registries.SoundRegistry.MIRROR_TELEPORT_FAILURE;
+
+        SoundEvent soundEvent = success ? teleportSuccess: teleportFailure;
+
         world.playSound(null, user.getX(), user.getY(), user.getZ(),
-                SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS,
+                soundEvent, SoundCategory.PLAYERS,
                 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + CHARGE_TIME * 0.5F);
     }
 
@@ -98,10 +106,15 @@ public class MagicMirrorItem extends Item {
         player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));
+        ServerWorld world = player.getServerWorld();
 
-        playEffects(player.getServerWorld(), player); // Spawn before tp
-        MirrorTeleportation.teleportPlayerToSpawn(player, true);
-        playEffects(player.getServerWorld(), player); // Spawn after tp
+        if (MirrorTeleportation.canTeleport(player, true)) {
+            playEffects(world, player, true); // Spawn before tp
+            MirrorTeleportation.teleportPlayerToSpawn(player, true);
+            playEffects(world, player, true); // Spawn after tp
+        } else {
+            playEffects(world, player, false);
+        }
 
         player.stopUsingItem();
     }

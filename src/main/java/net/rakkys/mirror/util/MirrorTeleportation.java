@@ -45,6 +45,19 @@ public class MirrorTeleportation {
                 runExperienceCheck(decreaseExperience, player);
     }
 
+    public static boolean canTeleport(ServerPlayerEntity player, boolean decreaseExperience) {
+        BlockPos spawnPos = player.getSpawnPointPosition();
+        RegistryKey<World> spawnWorldKey = player.getSpawnPointDimension();
+        ServerWorld spawnWorld = player.getServer().getWorld(spawnWorldKey);
+
+        if (spawnWorld == null) {
+            player.sendMessage(Text.translatable("text.rakkys-mirror.error.null_spawn_args"), true);
+            return false;
+        }
+
+        return canTeleport(spawnPos, spawnWorld, player, decreaseExperience);
+    }
+
     public static boolean checkValidRespawnPos(BlockPos spawnPos, ServerWorld spawnWorld, ServerPlayerEntity player) {
         if (spawnPos == null || spawnWorld == null) {
             player.sendMessage(Text.translatable("text.rakkys-mirror.error.null_spawn_args"), true);

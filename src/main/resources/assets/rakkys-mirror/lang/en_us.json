@@ -9,5 +9,8 @@
   "text.rakkys-mirror.error.not_home_dimension": "You cannot teleport outside of your current dimension",
   "text.rakkys-mirror.error.not_enough_experience": "You do not have enough experience to teleport",
 
-  "itemGroup.rakkys-mirror.magic_mirrors": "Magic Mirrors"
+  "itemGroup.rakkys-mirror.magic_mirrors": "Magic Mirrors",
+
+  "sounds.rakkys-mirror.mirror.teleport.success": "Mirror Warp Success",
+  "sounds.rakkys-mirror.mirror.teleport.failure": "Mirror Warp Failure"
 }

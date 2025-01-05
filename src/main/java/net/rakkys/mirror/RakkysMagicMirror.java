@@ -1,10 +1,7 @@
 package net.rakkys.mirror;
 
 import net.fabricmc.api.ModInitializer;
-import net.rakkys.mirror.registries.GameRulesRegistry;
-import net.rakkys.mirror.registries.ItemGroupRegistry;
-import net.rakkys.mirror.registries.ItemRegistry;
-import net.rakkys.mirror.registries.ParticleRegistry;
+import net.rakkys.mirror.registries.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +15,7 @@ public class RakkysMagicMirror implements ModInitializer {
 		ItemGroupRegistry.registerItemGroups();
 		GameRulesRegistry.registerGameRules();
 		ParticleRegistry.registerParticles();
+		SoundRegistry.registerSounds();
 
 		RakkysMagicMirror.LOGGER.info("[Rakkys Magic Mirror] fully initialized");
 	}

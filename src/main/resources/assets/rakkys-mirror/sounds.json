@@ -1,0 +1,14 @@
+{
+  "item.mirror.teleport.success": {
+    "subtitle": "sounds.rakkys-mirror.mirror.teleport.success",
+    "sounds": [
+      "rakkys-mirror:item/teleport_success"
+    ]
+  },
+  "item.mirror.teleport.failure": {
+    "subtitle": "sounds.rakkys-mirror.mirror.teleport.failure",
+    "sounds": [
+      "rakkys-mirror:item/teleport_failure"
+    ]
+  }
+}
