@@ -25,5 +25,7 @@ public class ItemGroupRegistry {
 
     public static void registerItemGroups() {
         registerItemGroup("magic_mirrors", MAGIC_MIRRORS);
+
+        RakkysMagicMirror.LOGGER.info("[Rakkys Magic Mirror] Registering Item Groups");
     }
 }

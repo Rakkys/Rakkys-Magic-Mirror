@@ -20,6 +20,6 @@ public class ItemRegistry {
     }
 
     public static void registerItems() {
-
+        RakkysMagicMirror.LOGGER.info("[Rakkys Magic Mirror] Registering Items");
     }
 }
