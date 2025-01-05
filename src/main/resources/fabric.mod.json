@@ -18,6 +18,9 @@
 		"main": [
 			"net.rakkys.mirror.RakkysMagicMirror"
 		],
+		"client": [
+			"net.rakkys.mirror.client.RakkysMagicMirrorClient"
+		],
 		"fabric-datagen": [
 			"net.rakkys.mirror.RakkysMagicMirrorDataGenerator"
 		]

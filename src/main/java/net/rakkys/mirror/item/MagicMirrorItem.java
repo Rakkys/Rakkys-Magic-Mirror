@@ -18,6 +18,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.rakkys.mirror.registries.GameRulesRegistry;
 import net.rakkys.mirror.registries.ItemRegistry;
+import net.rakkys.mirror.registries.ParticleRegistry;
 import net.rakkys.mirror.util.MirrorTeleportation;
 import org.jetbrains.annotations.Nullable;
 
@@ -66,9 +67,15 @@ public class MagicMirrorItem extends Item {
     }
 
     public void playEffects(ServerWorld world, ServerPlayerEntity user) {
-        world.spawnParticles(ParticleTypes.FLASH,
-                user.getX(), user.getY(), user.getZ(),
-                1, 0, 0, 0, 1);
+        int particleAmount = (world.getRandom().nextInt(CHARGE_TIME * 3) + 5) * 2;
+
+        for (int i = 0; i <= particleAmount; i++) {
+            int randomParticle = (int) (Math.random() * 3);
+
+            world.spawnParticles(ParticleRegistry.MIRROR_SPARKLES.get(randomParticle),
+                    user.getX(), user.getY(), user.getZ(),
+                    1, 0, 0, 0, 1);
+        }
 
         world.playSound(null, user.getX(), user.getY(), user.getZ(),
                 SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS,
@@ -90,10 +97,11 @@ public class MagicMirrorItem extends Item {
         player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
         player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
 
-        playEffects(player.getServerWorld(), player);
-
         player.incrementStat(Stats.USED.getOrCreateStat(this));
+
+        playEffects(player.getServerWorld(), player); // Spawn before tp
         MirrorTeleportation.teleportPlayerToSpawn(player, true);
+        playEffects(player.getServerWorld(), player); // Spawn after tp
 
         player.stopUsingItem();
     }
