@@ -77,7 +77,7 @@ public class MagicMirrorItem extends Item {
 
             world.spawnParticles(ParticleRegistry.MIRROR_SPARKLES.get(randomParticle),
                     user.getX(), user.getY(), user.getZ(),
-                    1, 0, 0, 0, 1);
+                    2, 0, 0, 0, 1);
         }
 
         SoundEvent teleportSuccess = net.rakkys.mirror.registries.SoundRegistry.MIRROR_TELEPORT_SUCCESS;
@@ -100,7 +100,6 @@ public class MagicMirrorItem extends Item {
     }
 
     public void teleportUser(ServerPlayerEntity player) {
-
         int cooldownDuration = player.getWorld().getGameRules().getInt(GameRulesRegistry.MAGIC_MIRROR_COOLDOWN);
         player.getItemCooldownManager().set(ItemRegistry.MAGIC_MIRROR, cooldownDuration);
         player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
@@ -108,9 +107,9 @@ public class MagicMirrorItem extends Item {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         ServerWorld world = player.getServerWorld();
 
-        if (MirrorTeleportation.canTeleport(player, true)) {
+        if (MirrorTeleportation.canTeleport(player, true) || player.isCreative()) {
             playEffects(world, player, true); // Spawn before tp
-            MirrorTeleportation.teleportPlayerToSpawn(player, true);
+            MirrorTeleportation.teleportPlayerToSpawn(player);
             playEffects(world, player, true); // Spawn after tp
         } else {
             playEffects(world, player, false);
