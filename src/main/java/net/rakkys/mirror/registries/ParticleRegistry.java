@@ -6,10 +6,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.rakkys.mirror.RakkysMagicMirror;
-import net.rakkys.mirror.particle.MirrorSparkleParticle;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ParticleRegistry {
