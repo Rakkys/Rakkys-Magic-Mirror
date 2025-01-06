@@ -16,24 +16,14 @@ import java.util.Optional;
 import java.util.Set;
 
 public class MirrorTeleportation {
-    public static void teleportPlayerToSpawn(ServerPlayerEntity player) {
-        teleportPlayerToSpawn(player, false);
-    }
-
-    public static boolean teleportPlayerToSpawn(ServerPlayerEntity player, boolean decreaseExperience) {
+    public static boolean teleportPlayerToSpawn(ServerPlayerEntity player) {
         BlockPos spawnPos = player.getSpawnPointPosition();
         RegistryKey<World> spawnWorldKey = player.getSpawnPointDimension();
-        ServerWorld spawnWorld = player.getServer().getWorld(spawnWorldKey);
-
-        Objects.requireNonNull(spawnWorld);
-
-        if (!canTeleport(spawnPos, spawnWorld, player, decreaseExperience)) {
-            return false;
-        }
+        ServerWorld spawnWorld = Objects.requireNonNull(player.getServer()).getWorld(spawnWorldKey);
 
         Set<PositionFlag> flags = Set.of(PositionFlag.X, PositionFlag.Y, PositionFlag.Z);
         player.teleport(spawnWorld,
-                spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(),
+                spawnPos.getX() + 0.5, spawnPos.getY() + 1, spawnPos.getZ() + 0.5,
                 flags, player.getYaw(), player.getPitch());
 
         return true;
