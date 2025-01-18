@@ -1,3 +1,5 @@
-- added custom particles to tp instead of minecraft:flash
-- added custom sound for when you teleport
-- added custom sound for when you try to teleport but fail
+- added an advancement for getting a mirror
+- added two advancements for using a magic mirror, 5 uses and 25 uses
+- - takes account your use count for both the ice and normal mirror
+- added two advancements for distance travelled with a magic mirror, 100 blocks and 1000 blocks
+- added an advancement for getting every mirror

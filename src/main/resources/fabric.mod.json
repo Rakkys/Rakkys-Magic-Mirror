@@ -1,15 +1,15 @@
 {
 	"schemaVersion": 1,
 	"id": "rakkys-mirror",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"name": "Rakkys' Magic Mirror",
 	"description": "Add a magic mirror item for teleporting to your spawn-point.",
 	"authors": [
 		"Rakkys"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/rakkys-magic-mirror",
+		"sources": "https://github.com/Rakkys/rakkysmagicmirror"
 	},
 	"license": "MIT",
 	"icon": "assets/rakkys-mirror/icon.png",
