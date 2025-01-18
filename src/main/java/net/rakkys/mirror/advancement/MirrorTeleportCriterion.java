@@ -45,7 +45,7 @@ public class MirrorTeleportCriterion extends AbstractCriterion<MirrorTeleportCri
         }
 
         public boolean matches(BlockPos startPos, BlockPos endPos) {
-            return startPos.getSquaredDistance(endPos) >= MathHelper.square(this.distance);
+            return !startPos.isWithinDistance(endPos, this.distance);
         }
 
         @Override
