@@ -1,11 +1,15 @@
 package net.rakkys.mirror.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.rakkys.mirror.RakkysMagicMirror;
 import net.rakkys.mirror.particle.MirrorSparkleParticle;
 import net.rakkys.mirror.registries.ParticleRegistry;
 
+
+@Environment(EnvType.CLIENT)
 public class RakkysMagicMirrorClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {

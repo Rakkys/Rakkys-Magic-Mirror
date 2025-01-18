@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:rakkys-mirror/mirror_teleport_easy",
+  "criteria": {
+    "mirror_teleport": {
+      "conditions": {
+        "distance": 1000.0
+      },
+      "trigger": "rakkys-mirror:mirror_teleport"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.rakkys-mirror.mirror-teleport-medium.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "rakkys-mirror:magic_mirror"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.rakkys-mirror.mirror-teleport-medium.title"
+    }
+  },
+  "requirements": [
+    [
+      "mirror_teleport"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

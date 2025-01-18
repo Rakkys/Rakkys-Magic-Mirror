@@ -1,16 +1,51 @@
 {
+  "----- * ----- == ITEMS == ----- * -----": "",
+
   "item.rakkys-mirror.magic_mirror": "Magic Mirror",
   "item.rakkys-mirror.ice_mirror": "Ice Mirror",
 
   "item.rakkys-mirror.mirrors.regular_tooltip": "Hold right click to return home",
   "item.rakkys-mirror.mirrors.gaze_tooltip": "Gaze in the mirror to return home",
 
+  "itemGroup.rakkys-mirror.magic_mirrors": "Magic Mirrors",
+
+  "----- * ----- == ERROR MESSAGES == ----- * -----": "",
+
   "text.rakkys-mirror.error.null_spawn_args": "Could not locate your spawn-point, :3",
   "text.rakkys-mirror.error.not_home_dimension": "You cannot teleport outside of your current dimension",
   "text.rakkys-mirror.error.not_enough_experience": "You do not have enough experience to teleport",
 
-  "itemGroup.rakkys-mirror.magic_mirrors": "Magic Mirrors",
+  "----- * ----- == TELEPORT MESSAGES == ----- * -----": "",
 
   "sounds.rakkys-mirror.mirror.teleport.success": "Mirror Warp Success",
-  "sounds.rakkys-mirror.mirror.teleport.failure": "Mirror Warp Failure"
+  "sounds.rakkys-mirror.mirror.teleport.failure": "Mirror Warp Failure",
+
+  "----- * ----- == ADVANCEMENTS == ----- * -----": "",
+
+  "advancements.rakkys-mirror.obtain_mirror.title": "Mirror, Mirror...",
+  "advancements.rakkys-mirror.obtain_mirror.description": "Craft a magic mirror. Your reflection will lead you home",
+
+  "----- MIRROR USE ADVANCEMENTS -----": "",
+
+  "advancements.rakkys-mirror.mirror-use-easy.title": "Portal Pioneer",
+  "advancements.rakkys-mirror.mirror-use-easy.description": "Use a mirror five times. Don't break your reflection now",
+
+  "advancements.rakkys-mirror.mirror-use-medium.title": "The Terrarian",
+  "advancements.rakkys-mirror.mirror-use-medium.description": "Use a mirror one hundred times. Use it as much as the Terrarian when they first get it",
+
+  "----- MIRROR TELEPORT DISTANCE ADVANCEMENTS -----": "",
+
+  "advancements.rakkys-mirror.mirror-teleport-easy.title": "Translocator",
+  "advancements.rakkys-mirror.mirror-teleport-easy.description": "Teleport over 100 blocks with your mirror. Taking the quick way home",
+
+  "advancements.rakkys-mirror.mirror-teleport-medium.title": "Mirror Mastery",
+  "advancements.rakkys-mirror.mirror-teleport-medium.description": "Teleport over 1,000 blocks with your mirror. A traveler at heart",
+
+  "----- MIRROR MISC ADVANCEMENTS, currently unused -----": "",
+
+  "advancements.rakkys-mirror.quick-escape.title": "Quick escape",
+  "advancements.rakkys-mirror.quick-escape.description": "Use a mirror at 30% health",
+
+  "advancements.rakkys-mirror.snowy-retreat.title": "Frosty Transit",
+  "advancements.rakkys-mirror.snowy-retreat.description": "Use an ice mirror within a snowy biome"
 }

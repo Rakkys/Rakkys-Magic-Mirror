@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:rakkys-mirror/obtain_mirror",
+  "criteria": {
+    "mirror_use": {
+      "conditions": {
+        "useCount": 5
+      },
+      "trigger": "rakkys-mirror:mirror_use"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.rakkys-mirror.mirror-use-easy.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "rakkys-mirror:magic_mirror"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.rakkys-mirror.mirror-use-easy.title"
+    }
+  },
+  "requirements": [
+    [
+      "mirror_use"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

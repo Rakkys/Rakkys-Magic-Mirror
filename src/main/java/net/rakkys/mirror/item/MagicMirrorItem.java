@@ -10,14 +10,14 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.ServerStatHandler;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.rakkys.mirror.registries.GameRulesRegistry;
-import net.rakkys.mirror.registries.ItemRegistry;
-import net.rakkys.mirror.registries.ParticleRegistry;
+import net.rakkys.mirror.registries.*;
 import net.rakkys.mirror.util.MirrorTeleportation;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,6 +61,12 @@ public class MagicMirrorItem extends Item {
         }
     }
 
+    private static int getMirrorUseCount(ServerPlayerEntity serverPlayer) {
+        ServerStatHandler statHandler = serverPlayer.getStatHandler();
+        return statHandler.getStat(Stats.USED.getOrCreateStat(ItemRegistry.MAGIC_MIRROR))
+                + statHandler.getStat(Stats.USED.getOrCreateStat(ItemRegistry.ICE_MIRROR));
+    }
+
     @Override
     public int getMaxUseTime(ItemStack stack) {
         return CHARGE_TIME * 1800;
@@ -77,8 +83,8 @@ public class MagicMirrorItem extends Item {
                     2, 0, 0, 0, 1);
         }
 
-        SoundEvent teleportSuccess = net.rakkys.mirror.registries.SoundRegistry.MIRROR_TELEPORT_SUCCESS;
-        SoundEvent teleportFailure = net.rakkys.mirror.registries.SoundRegistry.MIRROR_TELEPORT_FAILURE;
+        SoundEvent teleportSuccess = SoundRegistry.MIRROR_TELEPORT_SUCCESS;
+        SoundEvent teleportFailure = SoundRegistry.MIRROR_TELEPORT_FAILURE;
 
         SoundEvent soundEvent = success ? teleportSuccess: teleportFailure;
 
@@ -102,7 +108,11 @@ public class MagicMirrorItem extends Item {
         player.getItemCooldownManager().set(ItemRegistry.ICE_MIRROR, cooldownDuration);
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));
+
         ServerWorld world = player.getServerWorld();
+
+        BlockPos startPos = player.getBlockPos();
+        BlockPos endPos;
 
         if (MirrorTeleportation.canTeleport(player, true) || player.isCreative()) {
             playEffects(world, player, true); // Spawn before tp
@@ -113,5 +123,13 @@ public class MagicMirrorItem extends Item {
         }
 
         player.stopUsingItem();
+
+        // Advancement Handling
+
+        int useCount = getMirrorUseCount(player);
+        CriteriaRegistry.MIRROR_USE.trigger(player, useCount);
+
+        endPos = player.getBlockPos();
+        CriteriaRegistry.MIRROR_TELEPORT_DISTANCE.trigger(player, startPos, endPos);
     }
 }

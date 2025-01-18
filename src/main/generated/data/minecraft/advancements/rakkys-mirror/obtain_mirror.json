@@ -1,0 +1,43 @@
+{
+  "criteria": {
+    "obtain_mirror": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rakkys-mirror:magic_mirror"
+            ]
+          },
+          {
+            "items": [
+              "rakkys-mirror:ice_mirror"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/stone_bricks.png",
+    "description": {
+      "translate": "advancements.rakkys-mirror.obtain_mirror.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "rakkys-mirror:magic_mirror"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.rakkys-mirror.obtain_mirror.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_mirror"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
