@@ -9,13 +9,13 @@
 
   "itemGroup.rakkys-mirror.magic_mirrors": "Magic Mirrors",
 
-  "----- * ----- == ERROR MESSAGES == ----- * -----": "",
+  "----- * ----- == MIRROR TELEPORT ERROR MESSAGES == ----- * -----": "",
 
   "text.rakkys-mirror.error.null_spawn_args": "Could not locate your spawn-point, :3",
   "text.rakkys-mirror.error.not_home_dimension": "You cannot teleport outside of your current dimension",
   "text.rakkys-mirror.error.not_enough_experience": "You do not have enough experience to teleport",
 
-  "----- * ----- == TELEPORT MESSAGES == ----- * -----": "",
+  "----- * ----- == SOUND EFFECT SUBTITLES == ----- * -----": "",
 
   "sounds.rakkys-mirror.mirror.teleport.success": "Mirror Warp Success",
   "sounds.rakkys-mirror.mirror.teleport.failure": "Mirror Warp Failure",
