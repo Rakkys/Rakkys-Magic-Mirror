@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:rakkys-mirror/obtain_mirror",
+  "criteria": {
+    "obtain_ice_mirror": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rakkys-mirror:ice_mirror"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "obtain_normal_mirror": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rakkys-mirror:magic_mirror"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.rakkys-mirror.obtain_every_mirror.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "rakkys-mirror:magic_mirror"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.rakkys-mirror.obtain_every_mirror.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_normal_mirror"
+    ],
+    [
+      "obtain_ice_mirror"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

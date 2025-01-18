@@ -31,7 +31,7 @@
   "advancements.rakkys-mirror.mirror-use-easy.description": "Use a mirror five times. Don't break your reflection now",
 
   "advancements.rakkys-mirror.mirror-use-medium.title": "The Terrarian",
-  "advancements.rakkys-mirror.mirror-use-medium.description": "Use a mirror one hundred times. Use it as much as the Terrarian when they first get it",
+  "advancements.rakkys-mirror.mirror-use-medium.description": "Use a mirror one hundred times.",
 
   "----- MIRROR TELEPORT DISTANCE ADVANCEMENTS -----": "",
 
@@ -42,6 +42,9 @@
   "advancements.rakkys-mirror.mirror-teleport-medium.description": "Teleport over 1,000 blocks with your mirror. A traveler at heart",
 
   "----- MIRROR MISC ADVANCEMENTS, currently unused -----": "",
+
+  "advancements.rakkys-mirror.obtain_every_mirror.title": "...on the wall.",
+  "advancements.rakkys-mirror.obtain_every_mirror.description": "Obtain every mirror there is",
 
   "advancements.rakkys-mirror.quick-escape.title": "Quick escape",
   "advancements.rakkys-mirror.quick-escape.description": "Use a mirror at 30% health",

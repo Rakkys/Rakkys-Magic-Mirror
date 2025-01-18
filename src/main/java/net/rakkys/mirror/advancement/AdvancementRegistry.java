@@ -108,6 +108,22 @@ public class AdvancementRegistry extends FabricAdvancementProvider {
 
         // MIRROR MISC ADVANCEMENTS
 
+        Advancement obtainAll = Advancement.Builder.create()
+                .parent(rootAdvancement)
+                .display(
+                        ItemRegistry.MAGIC_MIRROR,
+                        Text.translatable("advancements.rakkys-mirror.obtain_every_mirror.title"),
+                        Text.translatable("advancements.rakkys-mirror.obtain_every_mirror.description"),
+                        null,
+                        AdvancementFrame.CHALLENGE,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("obtain_normal_mirror", InventoryChangedCriterion.Conditions.items(ItemRegistry.MAGIC_MIRROR))
+                .criterion("obtain_ice_mirror", InventoryChangedCriterion.Conditions.items(ItemRegistry.ICE_MIRROR))
+                .build(consumer, RakkysMagicMirror.MOD_ID + "/obtain_every_mirror");
+
         // TODO: Finish these advancements
 
         Advancement quickEscape = null; /*Advancement.Builder.create()
