@@ -1,16 +1,11 @@
 {
   "criteria": {
-    "obtain_mirror": {
+    "obtain_normal_mirror": {
       "conditions": {
         "items": [
           {
             "items": [
               "rakkys-mirror:magic_mirror"
-            ]
-          },
-          {
-            "items": [
-              "rakkys-mirror:ice_mirror"
             ]
           }
         ]
@@ -36,7 +31,7 @@
   },
   "requirements": [
     [
-      "obtain_mirror"
+      "obtain_normal_mirror"
     ]
   ],
   "sends_telemetry_event": true

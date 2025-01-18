@@ -25,6 +25,9 @@ public class AdvancementRegistry extends FabricAdvancementProvider {
 
     @Override
     public void generateAdvancement(Consumer<Advancement> consumer) {
+
+        // TODO: Figure out how to make it take either the normal or ice mirror instead of needing both
+
         Advancement rootAdvancement = Advancement.Builder.create()
                 .display(
                         ItemRegistry.MAGIC_MIRROR,
@@ -36,7 +39,7 @@ public class AdvancementRegistry extends FabricAdvancementProvider {
                         true,
                         false
                 )
-                .criterion("obtain_mirror", InventoryChangedCriterion.Conditions.items(ItemRegistry.MAGIC_MIRROR, ItemRegistry.ICE_MIRROR))
+                .criterion("obtain_normal_mirror", InventoryChangedCriterion.Conditions.items(ItemRegistry.MAGIC_MIRROR))
                 .build(consumer, RakkysMagicMirror.MOD_ID + "/obtain_mirror");
 
         // MIRROR USE ADVANCEMENTS
